@@ -7,6 +7,7 @@ from django.contrib.auth import get_user_model
 # обращение к модели User
 User = get_user_model()
 
+
 class Group(models.Model):
     def __str__(self):
         return self.title
