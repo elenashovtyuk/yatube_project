@@ -10,30 +10,11 @@
         <li>Автор: {{ post.author.get_full_name }}</li>
         <li>Дата публикации: {{ post.pub_date|date:"d E Y" }}</li>
       </ul>
-      <p>{{ post.text }}</p>
+      <p>{{ post.text|linebreaksbr }}</p>
       {% if post.group %}
-        <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
+          Группа: <a href="{% url 'posts:group_list' post.group.slug %}">{{ post.group.title }}</a>
       {% endif %}
     </article>
     {% if not forloop.last %}<hr>{% endif %}
   {% endfor %}
 {% endblock %}
-
-{% comment %}
-{% block content %}
-{% for post in posts %}
-<ul>
-  <li>Автор: {{ post.author.get_full_name }}</li>
-  <li>Дата публикации: {{ post.pub_date|date:"d E Y" }}</li>
-</ul>
-<p>
-{{ posts.text }}
-{% if post.group %}
-  <a href="{% url 'posts:index' post.group.slug %}">все записи группы</a>
-{% endif %}
-  {% if not forloop.last %}
-</p>
-<hr>
-{% endif %}{% endfor %}
-{% endblock %}
-{% endcomment %}
